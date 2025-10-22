@@ -131,6 +131,19 @@ except FMPAPIError as e:
 - [Get API Key](https://site.financialmodelingprep.com/developer/docs/pricing)
 - [API Dashboard](https://site.financialmodelingprep.com/developer/docs/dashboard)
 
+## TODO
+
+- [ ] Publish to PyPI
+- [ ] Add async support (httpx already supports it)
+- [ ] Add rate limiting handling
+- [ ] Add retry logic for failed requests
+- [ ] Add more endpoint coverage (earnings, dividends, etc.)
+- [ ] Add caching layer
+- [ ] Add pagination support for large datasets
+- [ ] Create comprehensive documentation site
+- [ ] Add usage examples for all endpoints
+- [ ] Add GitHub Actions CI/CD pipeline
+
 ## License
 
 MIT

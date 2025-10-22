@@ -43,6 +43,9 @@ htmlcov/
 .env
 .env.local
 
+# Git
+.gitmessage
+
 # OS
 .DS_Store
 Thumbs.db
