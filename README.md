@@ -133,16 +133,31 @@ except FMPAPIError as e:
 
 ## TODO
 
+### Publishing
 - [ ] Publish to PyPI
+
+### Missing Important Endpoints
+- [ ] Earnings (calendar, historical, surprises)
+- [ ] Dividends (calendar, historical)
+- [ ] Stock splits
+- [ ] IPO calendar
+- [ ] Economic indicators (GDP, CPI, unemployment)
+- [ ] Insider trading
+- [ ] Institutional holdings
+- [ ] ETF holdings and sectors
+- [ ] Key executives
+- [ ] Market hours and holidays
+- [ ] Analyst estimates and ratings
+- [ ] SEC filings (10-K, 10-Q, 8-K)
+- [ ] Price targets
+- [ ] Upgrades/downgrades
+
+### Technical Improvements
 - [ ] Add async support (httpx already supports it)
 - [ ] Add rate limiting handling
 - [ ] Add retry logic for failed requests
-- [ ] Add more endpoint coverage (earnings, dividends, etc.)
-- [ ] Add caching layer
-- [ ] Add pagination support for large datasets
-- [ ] Create comprehensive documentation site
-- [ ] Add usage examples for all endpoints
-- [ ] Add GitHub Actions CI/CD pipeline
+- [ ] Add response caching
+- [ ] Better error messages with API error codes
 
 ## License
 
