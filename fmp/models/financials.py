@@ -11,9 +11,9 @@ class IncomeStatement(BaseModel):
     symbol: str
     reported_currency: str = Field(alias="reportedCurrency")
     cik: str
-    filling_date: str = Field(alias="fillingDate")
+    filling_date: Optional[str] = Field(None, alias="fillingDate")
     accepted_date: str = Field(alias="acceptedDate")
-    calendar_year: str = Field(alias="calendarYear")
+    calendar_year: Optional[str] = Field(None, alias="calendarYear")
     period: str
     revenue: Optional[float] = None
     cost_of_revenue: Optional[float] = Field(None, alias="costOfRevenue")
@@ -54,9 +54,9 @@ class BalanceSheet(BaseModel):
     symbol: str
     reported_currency: str = Field(alias="reportedCurrency")
     cik: str
-    filling_date: str = Field(alias="fillingDate")
+    filling_date: Optional[str] = Field(None, alias="fillingDate")
     accepted_date: str = Field(alias="acceptedDate")
-    calendar_year: str = Field(alias="calendarYear")
+    calendar_year: Optional[str] = Field(None, alias="calendarYear")
     period: str
     cash_and_cash_equivalents: Optional[float] = Field(None, alias="cashAndCashEquivalents")
     short_term_investments: Optional[float] = Field(None, alias="shortTermInvestments")
@@ -113,9 +113,9 @@ class CashFlowStatement(BaseModel):
     symbol: str
     reported_currency: str = Field(alias="reportedCurrency")
     cik: str
-    filling_date: str = Field(alias="fillingDate")
+    filling_date: Optional[str] = Field(None, alias="fillingDate")
     accepted_date: str = Field(alias="acceptedDate")
-    calendar_year: str = Field(alias="calendarYear")
+    calendar_year: Optional[str] = Field(None, alias="calendarYear")
     period: str
     net_income: Optional[float] = Field(None, alias="netIncome")
     depreciation_and_amortization: Optional[float] = Field(None, alias="depreciationAndAmortization")

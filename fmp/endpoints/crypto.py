@@ -17,7 +17,7 @@ class CryptoEndpoints:
         Returns:
             List of CryptoQuote objects
         """
-        data = self._get(f"quote/{symbol}")
+        data = self._get("quote", params={"symbol": symbol})
         return [CryptoQuote(**item) for item in data]
 
     def get_crypto_list(self) -> List[CryptoInfo]:
@@ -75,13 +75,13 @@ class CryptoEndpoints:
         Returns:
             List of CryptoHistoricalPrice objects with intraday data
         """
-        params = {}
+        params = {"symbol": symbol}
         if from_date:
             params["from"] = from_date
         if to_date:
             params["to"] = to_date
 
-        data = self._get(f"historical-chart/{interval}/{symbol}", params=params)
+        data = self._get(f"historical-chart/{interval}", params=params)
 
         result = []
         for item in data:
@@ -109,7 +109,7 @@ class CryptoEndpoints:
             List of CryptoNews objects
         """
         params = {"page": page, "limit": limit}
-        data = self._get("v3/stock_news?type=crypto", params=params)
+        data = self._get("news/crypto-latest", params=params)
         return [CryptoNews(**item) for item in data]
 
     def search_crypto_news(
@@ -134,7 +134,7 @@ class CryptoEndpoints:
             List of CryptoNews objects
         """
         params = {
-            "tickers": symbols,
+            "symbols": symbols,
             "page": page,
             "limit": limit,
         }
@@ -143,5 +143,5 @@ class CryptoEndpoints:
         if to_date:
             params["to"] = to_date
 
-        data = self._get("v3/stock_news", params=params)
+        data = self._get("news/crypto", params=params)
         return [CryptoNews(**item) for item in data]

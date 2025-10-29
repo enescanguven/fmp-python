@@ -7,7 +7,7 @@ def test_client_initialization(api_key):
     """Test client can be initialized with API key."""
     client = FMPClient(api_key=api_key)
     assert client.api_key == api_key
-    assert client.base_url == "https://financialmodelingprep.com/api/v3"
+    assert client.base_url == "https://financialmodelingprep.com/stable"
     assert client.timeout == 30.0
     client.close()
 

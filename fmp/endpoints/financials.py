@@ -29,11 +29,11 @@ class FinancialsEndpoints:
         Returns:
             List of IncomeStatement objects
         """
-        params = {"period": period}
+        params = {"symbol": symbol, "period": period}
         if limit:
             params["limit"] = limit
 
-        data = self._get(f"income-statement/{symbol}", params=params)
+        data = self._get("income-statement", params=params)
         return [IncomeStatement(**item) for item in data]
 
     def get_balance_sheet(
@@ -53,11 +53,11 @@ class FinancialsEndpoints:
         Returns:
             List of BalanceSheet objects
         """
-        params = {"period": period}
+        params = {"symbol": symbol, "period": period}
         if limit:
             params["limit"] = limit
 
-        data = self._get(f"balance-sheet-statement/{symbol}", params=params)
+        data = self._get("balance-sheet-statement", params=params)
         return [BalanceSheet(**item) for item in data]
 
     def get_cash_flow_statement(
@@ -77,11 +77,11 @@ class FinancialsEndpoints:
         Returns:
             List of CashFlowStatement objects
         """
-        params = {"period": period}
+        params = {"symbol": symbol, "period": period}
         if limit:
             params["limit"] = limit
 
-        data = self._get(f"cash-flow-statement/{symbol}", params=params)
+        data = self._get("cash-flow-statement", params=params)
         return [CashFlowStatement(**item) for item in data]
 
     def get_financial_growth(
@@ -101,9 +101,9 @@ class FinancialsEndpoints:
         Returns:
             List of FinancialGrowth objects
         """
-        params = {"period": period}
+        params = {"symbol": symbol, "period": period}
         if limit:
             params["limit"] = limit
 
-        data = self._get(f"financial-growth/{symbol}", params=params)
+        data = self._get("financial-growth", params=params)
         return [FinancialGrowth(**item) for item in data]

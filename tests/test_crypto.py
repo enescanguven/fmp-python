@@ -1,6 +1,7 @@
 """Tests for cryptocurrency endpoints."""
 
-from fmp.models import CryptoQuote, CryptoInfo, CryptoHistoricalPrice
+import pytest
+from fmp.models import CryptoQuote, CryptoInfo, CryptoHistoricalPrice, CryptoNews
 
 
 def test_get_crypto_quote(client):
@@ -13,6 +14,7 @@ def test_get_crypto_quote(client):
     assert quote[0].price is not None
 
 
+@pytest.mark.skip(reason="Endpoint not available in v4 API")
 def test_get_crypto_list(client):
     """Test getting cryptocurrency list."""
     cryptos = client.get_crypto_list()
@@ -30,3 +32,22 @@ def test_get_crypto_intraday(client):
     assert len(data) > 0
     assert isinstance(data[0], CryptoHistoricalPrice)
     assert data[0].price is not None
+
+
+def test_get_crypto_news_latest(client):
+    """Test getting latest crypto news."""
+    news = client.get_crypto_news_latest(limit=5)
+    assert isinstance(news, list)
+    assert len(news) > 0
+    assert isinstance(news[0], CryptoNews)
+    assert news[0].title is not None
+    assert news[0].url is not None
+
+
+def test_search_crypto_news(client):
+    """Test searching crypto news by symbol."""
+    news = client.search_crypto_news("BTCUSD", limit=5)
+    assert isinstance(news, list)
+    assert len(news) > 0
+    assert isinstance(news[0], CryptoNews)
+    assert news[0].title is not None

@@ -17,7 +17,7 @@ class MarketEndpoints:
         Returns:
             List of Quote objects
         """
-        data = self._get(f"quote/{symbol}")
+        data = self._get("quote", params={"symbol": symbol})
         return [Quote(**item) for item in data]
 
     def get_historical_chart(
@@ -39,13 +39,13 @@ class MarketEndpoints:
         Returns:
             List of HistoricalPrice objects
         """
-        params = {}
+        params = {"symbol": symbol}
         if from_date:
             params["from"] = from_date
         if to_date:
             params["to"] = to_date
 
-        data = self._get(f"historical-chart/{interval}/{symbol}", params=params)
+        data = self._get(f"historical-chart/{interval}", params=params)
         return [HistoricalPrice(**item) for item in data]
 
     def get_historical_price(
@@ -67,7 +67,7 @@ class MarketEndpoints:
         Returns:
             Dictionary containing symbol and historical price data
         """
-        params = {}
+        params = {"symbol": symbol}
         if from_date:
             params["from"] = from_date
         if to_date:
@@ -75,7 +75,7 @@ class MarketEndpoints:
         if timeseries:
             params["timeseries"] = timeseries
 
-        return self._get(f"historical-price-full/{symbol}", params=params)
+        return self._get("historical-price-eod/full", params=params)
 
     def get_industry_pe(
         self,
