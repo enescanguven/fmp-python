@@ -1,11 +1,14 @@
 """Shared pytest fixtures."""
 
 import os
+from pathlib import Path
 import pytest
 from dotenv import load_dotenv
 from fmp import FMPClient
 
-load_dotenv()
+# Load .env from project root
+env_path = Path(__file__).parent.parent / ".env"
+load_dotenv(dotenv_path=env_path)
 
 
 @pytest.fixture

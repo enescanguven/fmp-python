@@ -1,6 +1,6 @@
 """Response models for FMP API."""
 
-from fmp.models.company import CompanyProfile, SearchResult, StockScreenerResult
+from fmp.models.company import CompanyProfile, SearchResult, StockScreenerResult, StockNews
 from fmp.models.market import Quote, HistoricalPrice
 from fmp.models.crypto import CryptoQuote, CryptoInfo, CryptoHistoricalPrice, CryptoNews
 from fmp.models.financials import (
@@ -14,6 +14,7 @@ __all__ = [
     "CompanyProfile",
     "SearchResult",
     "StockScreenerResult",
+    "StockNews",
     "Quote",
     "HistoricalPrice",
     "CryptoQuote",

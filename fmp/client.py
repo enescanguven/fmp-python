@@ -1,12 +1,14 @@
 """Main FMP API client."""
 
 from typing import Any, Dict, Optional
+
 import httpx
-from fmp.exceptions import FMPAPIError, FMPAuthError
+
 from fmp.endpoints.company import CompanyEndpoints
-from fmp.endpoints.market import MarketEndpoints
 from fmp.endpoints.crypto import CryptoEndpoints
 from fmp.endpoints.financials import FinancialsEndpoints
+from fmp.endpoints.market import MarketEndpoints
+from fmp.exceptions import FMPAPIError, FMPAuthError
 
 
 class FMPClient(CompanyEndpoints, MarketEndpoints, CryptoEndpoints, FinancialsEndpoints):
@@ -22,7 +24,7 @@ class FMPClient(CompanyEndpoints, MarketEndpoints, CryptoEndpoints, FinancialsEn
     def __init__(
         self,
         api_key: str,
-        base_url: str = "https://financialmodelingprep.com/api/v3",
+        base_url: str = "https://financialmodelingprep.com/stable",
         timeout: float = 30.0,
     ):
         self.api_key = api_key

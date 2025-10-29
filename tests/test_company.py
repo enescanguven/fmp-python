@@ -1,6 +1,6 @@
 """Tests for company endpoints."""
 
-from fmp.models import CompanyProfile, SearchResult, StockScreenerResult
+from fmp.models import CompanyProfile, SearchResult, StockScreenerResult, StockNews
 
 
 def test_get_profile(client):
@@ -35,3 +35,16 @@ def test_screen_stocks(client):
     assert len(results) <= 5
     if len(results) > 0:
         assert isinstance(results[0], StockScreenerResult)
+
+
+def test_search_stock_news(client):
+    """Test searching stock news."""
+    results = client.search_stock_news("AAPL", limit=5)
+    assert isinstance(results, list)
+    assert len(results) > 0
+    assert isinstance(results[0], StockNews)
+    assert results[0].symbol == "AAPL"
+    assert results[0].title is not None
+    assert results[0].published_date is not None
+    assert results[0].url is not None
+    assert results[0].site is not None

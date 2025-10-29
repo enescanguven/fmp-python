@@ -1,7 +1,12 @@
 """Company-related API endpoints."""
 
 from typing import Any, Dict, List, Optional
-from fmp.models.company import CompanyProfile, SearchResult, StockScreenerResult
+from fmp.models.company import (
+    CompanyProfile,
+    SearchResult,
+    StockScreenerResult,
+    StockNews,
+)
 
 
 class CompanyEndpoints:
@@ -20,7 +25,7 @@ class CompanyEndpoints:
         Returns:
             List of CompanyProfile objects
         """
-        data = self._get(f"profile/{symbol}")
+        data = self._get("profile", params={"symbol": symbol})
         return [CompanyProfile(**item) for item in data]
 
     def search_symbol(self, query: str) -> List[SearchResult]:
@@ -33,7 +38,7 @@ class CompanyEndpoints:
         Returns:
             List of SearchResult objects
         """
-        data = self._get("search", params={"query": query})
+        data = self._get("search-name", params={"query": query})
         return [SearchResult(**item) for item in data]
 
     def search_by_name(self, query: str) -> List[SearchResult]:
@@ -180,5 +185,35 @@ class CompanyEndpoints:
         if limit is not None:
             params["limit"] = limit
 
-        data = self._get("stock-screener", params=params)
+        data = self._get("company-screener", params=params)
         return [StockScreenerResult(**item) for item in data]
+
+    def search_stock_news(
+        self,
+        symbols: str,
+        page: Optional[int] = None,
+        limit: Optional[int] = None,
+    ) -> List[StockNews]:
+        """
+        Search for news articles related to specific stock symbols.
+
+        Find specific stock news by entering a ticker symbol to track the latest
+        developments and news coverage.
+
+        Args:
+            symbols: Stock ticker symbol(s) to search for news (e.g., 'AAPL')
+            page: Page number for pagination (default: 0)
+            limit: Number of results per page (default: 20)
+
+        Returns:
+            List of StockNews objects containing news articles
+        """
+        params = {"symbols": symbols}
+
+        if page is not None:
+            params["page"] = page
+        if limit is not None:
+            params["limit"] = limit
+
+        data = self._get("news/stock", params=params)
+        return [StockNews(**item) for item in data]

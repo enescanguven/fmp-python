@@ -78,3 +78,17 @@ class StockScreenerResult(BaseModel):
     is_actively_trading: Optional[bool] = Field(None, alias="isActivelyTrading")
 
     model_config = ConfigDict(populate_by_name=True)
+
+
+class StockNews(BaseModel):
+    """Stock news article."""
+
+    symbol: str
+    published_date: str = Field(alias="publishedDate")
+    title: str
+    image: Optional[str] = None
+    site: str
+    text: str
+    url: str
+
+    model_config = ConfigDict(populate_by_name=True)
