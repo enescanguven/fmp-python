@@ -53,7 +53,7 @@ class CryptoEndpoints:
         if to_date:
             params["to"] = to_date
 
-        data = self._get("historical-price-full/crypto", params=params)
+        data = self._get("historical-price-eod/light", params=params)
         return [CryptoHistoricalPrice(**item) for item in data]
 
     def get_crypto_intraday(
@@ -85,12 +85,9 @@ class CryptoEndpoints:
 
         result = []
         for item in data:
-            result.append(CryptoHistoricalPrice(
-                symbol=symbol,
-                date=item["date"],
-                price=item["close"],
-                volume=item.get("volume")
-            ))
+            result.append(
+                CryptoHistoricalPrice(symbol=symbol, date=item["date"], price=item["close"], volume=item.get("volume"))
+            )
         return result
 
     def get_crypto_news_latest(
