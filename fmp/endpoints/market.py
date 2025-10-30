@@ -51,15 +51,17 @@ class MarketEndpoints:
     def get_historical_price(
         self,
         symbol: str,
+        price_type: str = "full",
         from_date: Optional[str] = None,
         to_date: Optional[str] = None,
         timeseries: Optional[int] = None,
-    ) -> Dict[str, Any]:
+    ) -> List[Dict[str, Any]]:
         """
         Get daily historical price data.
 
         Args:
             symbol: Stock ticker symbol
+            price_type: Type of price data - 'full', 'light', 'non-split-adjusted', or 'dividend-adjusted'
             from_date: Start date (YYYY-MM-DD format)
             to_date: End date (YYYY-MM-DD format)
             timeseries: Number of days to retrieve
@@ -75,7 +77,7 @@ class MarketEndpoints:
         if timeseries:
             params["timeseries"] = timeseries
 
-        return self._get("historical-price-eod/light", params=params)
+        return self._get(f"historical-price-eod/{price_type}", params=params)
 
     def get_industry_pe(
         self,

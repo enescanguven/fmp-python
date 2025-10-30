@@ -22,3 +22,18 @@ def test_get_historical_chart(client):
     assert isinstance(data[0], HistoricalPrice)
     assert data[0].date is not None
     assert data[0].close is not None
+
+
+def test_get_historical_price_full(client):
+    """Test getting full historical price data."""
+    data = client.get_historical_price("AAPL", price_type="full", timeseries=5)
+    assert isinstance(data, list)
+    assert len(data) > 0
+    assert "symbol" in data[0]
+
+
+def test_get_historical_price_light(client):
+    """Test getting light historical price data."""
+    data = client.get_historical_price("AAPL", price_type="light", timeseries=5)
+    assert isinstance(data, list)
+    assert len(data) > 0

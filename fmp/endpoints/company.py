@@ -217,3 +217,51 @@ class CompanyEndpoints:
 
         data = self._get("news/stock", params=params)
         return [StockNews(**item) for item in data]
+
+    def get_general_news_latest(
+        self,
+        page: Optional[int] = None,
+        limit: Optional[int] = None,
+    ) -> List[StockNews]:
+        """
+        Get latest general market news.
+
+        Args:
+            page: Page number for pagination (default: 0)
+            limit: Number of results per page (default: 20, max: 250)
+
+        Returns:
+            List of StockNews objects containing general news articles
+        """
+        params = {}
+        if page is not None:
+            params["page"] = page
+        if limit is not None:
+            params["limit"] = limit
+
+        data = self._get("news/general-latest", params=params)
+        return [StockNews(**item) for item in data]
+
+    def get_stock_news_latest(
+        self,
+        page: Optional[int] = None,
+        limit: Optional[int] = None,
+    ) -> List[StockNews]:
+        """
+        Get latest stock market news.
+
+        Args:
+            page: Page number for pagination (default: 0)
+            limit: Number of results per page (default: 20, max: 250)
+
+        Returns:
+            List of StockNews objects containing stock news articles
+        """
+        params = {}
+        if page is not None:
+            params["page"] = page
+        if limit is not None:
+            params["limit"] = limit
+
+        data = self._get("news/stock-latest", params=params)
+        return [StockNews(**item) for item in data]

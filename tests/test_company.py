@@ -48,3 +48,23 @@ def test_search_stock_news(client):
     assert results[0].published_date is not None
     assert results[0].url is not None
     assert results[0].site is not None
+
+
+def test_get_general_news_latest(client):
+    """Test getting latest general news."""
+    results = client.get_general_news_latest(limit=5)
+    assert isinstance(results, list)
+    assert len(results) > 0
+    assert isinstance(results[0], StockNews)
+    assert results[0].title is not None
+    assert results[0].url is not None
+
+
+def test_get_stock_news_latest(client):
+    """Test getting latest stock news."""
+    results = client.get_stock_news_latest(limit=5)
+    assert isinstance(results, list)
+    assert len(results) > 0
+    assert isinstance(results[0], StockNews)
+    assert results[0].title is not None
+    assert results[0].url is not None

@@ -83,7 +83,7 @@ class StockScreenerResult(BaseModel):
 class StockNews(BaseModel):
     """Stock news article."""
 
-    symbol: str
+    symbol: Optional[str] = None
     published_date: str = Field(alias="publishedDate")
     title: str
     image: Optional[str] = None
