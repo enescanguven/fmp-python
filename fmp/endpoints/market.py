@@ -75,7 +75,7 @@ class MarketEndpoints:
         if timeseries:
             params["timeseries"] = timeseries
 
-        return self._get("historical-price-eod/full", params=params)
+        return self._get("historical-price-eod/light", params=params)
 
     def get_industry_pe(
         self,
