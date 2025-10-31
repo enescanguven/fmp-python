@@ -27,7 +27,7 @@ class CryptoEndpoints:
         Returns:
             List of CryptoInfo objects
         """
-        data = self._get("symbol/available-cryptocurrencies")
+        data = self._get("cryptocurrency-list")
         return [CryptoInfo(**item) for item in data]
 
     def get_crypto_historical_price(
